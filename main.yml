@@ -3,12 +3,12 @@
   connection: local
 
   vars_files:
-    - default.config.yml
+    - config.yml
 
   pre_tasks:
     - include_vars: "{{ item }}"
       with_fileglob:
-        - ../config.yml
+        - ../meli.config.yml
       tags: ['always']
 
   roles:
@@ -20,6 +20,26 @@
     - role: geerlingguy.mas
       when: mas_installed_apps
       tags: ['mas']
+    - role: Comcast.sdkman
+      sdkman_dir: /usr/local/sdkman
+      sdkman_auto_answer: true
+      sdkman_update: true
+      sdkman_install_packages:
+        - { candidate: gradle, version: '3.5' }
+        - { candidate: maven, version: '3.5.0' }
+        - { candidate: grails, version: '2.5.4' }
+        - { candidate: java, version: '8.0.181-oracle' }
+      sdkman_defaults:
+        gradle: '3.5'
+        maven: 3.3.9
+        java: '8.0.181-oracle'
+      sdkman_flush_caches_before:
+        - temp
+      sdkman_flush_caches_after:
+        - archives
+        - broadcast
+        - candidates
+        - temp
 
   tasks:
     - include_tasks: tasks/ansible-setup.yml
