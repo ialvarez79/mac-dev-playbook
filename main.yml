@@ -14,24 +14,23 @@
   roles:
     - role: geerlingguy.homebrew
       tags: ['homebrew']
+      ignore_errors: yes
     - role: geerlingguy.mas
       when: mas_installed_apps
       tags: ['mas']
     - role: Comcast.sdkman
-      sdkman_dir: /usr/local/sdkman
+      sdkman_dir: ./sdkman
+      sdkman_tmp_dir: /tmp
       sdkman_auto_answer: true
-      sdkman_update: true
       sdkman_install_packages:
         - { candidate: gradle, version: '3.5' }
-        - { candidate: maven, version: '3.5.0' }
+        - { candidate: maven, version: '3.5.4' }
         - { candidate: grails, version: '2.5.4' }
-        - { candidate: java, version: '8.0.181-oracle' }
+        - { candidate: java, version: '8.0.191-oracle' }
       sdkman_defaults:
         gradle: '3.5'
-        maven: 3.3.9
-        java: '8.0.181-oracle'
-      sdkman_flush_caches_before:
-        - temp
+        maven: '3.5.0'
+        java: '8.0.191-oracle'
       sdkman_flush_caches_after:
         - archives
         - broadcast
@@ -43,13 +42,6 @@
 
     - include_tasks: tasks/sudoers.yml
       when: configure_sudoers
-
-    - include_tasks: tasks/terminal.yml
-      when: configure_terminal
-
-    - include_tasks: tasks/osx.yml
-      when: configure_osx
-      tags: ['osx']
 
     - include_tasks: tasks/extra-packages.yml
       tags: ['extra-packages']
