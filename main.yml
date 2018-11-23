@@ -26,10 +26,12 @@
         - { candidate: gradle, version: '3.5' }
         - { candidate: maven, version: '3.5.4' }
         - { candidate: grails, version: '2.5.4' }
+        - { candidate: grails, version: '2.5.3' }
         - { candidate: java, version: '8.0.191-oracle' }
       sdkman_defaults:
         gradle: '3.5'
         maven: '3.5.4'
+        grails: '2.5.3'
         java: '8.0.191-oracle'
       sdkman_flush_caches_after:
         - archives
