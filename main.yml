@@ -38,7 +38,6 @@
         - broadcast
         - candidates
         - temp
-    - role: viasite-ansible.zsh
 
   tasks:
     - include_tasks: tasks/ansible-setup.yml
